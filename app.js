@@ -27,7 +27,7 @@
     }
   };
 
-  //window.base_ajax(config);
+  window.base_ajax(config);
 
   /*$.ajax({
     method: "POST",
