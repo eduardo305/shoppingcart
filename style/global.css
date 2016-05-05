@@ -1,0 +1,60 @@
+.container .header {
+  line-height: 39px;
+  margin: 7px 7px 40px 7px;
+  font-weight: bold;
+  font-size: 23px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+}
+
+.container .header .logo a:hover {
+  text-decoration: none;
+}
+
+.container .header .logo span {
+  font-size: 22px;
+  background-color: lightblue;
+  color: white;
+  border: 1px solid lightblue;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.container .header img {
+  width: 32px;
+}
+
+#bag-icon span {
+  font-size: 15px;
+}
+
+.container .description {
+    text-align: center;
+    font-family: arial;
+    margin: 0px 0px 20px 0px;
+}
+
+.container h4 {
+    font-weight: bold;
+}
+
+.container .thumbnail {
+    border-radius: 0px;
+}
+
+.container .thumbnail img {
+    max-width: 55%;
+    height: auto;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 150px;
+}
+
+.container .thumbnail:hover {
+    cursor: pointer;
+}
+
+.my-centered {
+    float: none;
+    margin: 0 auto;
+}

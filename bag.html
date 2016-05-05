@@ -2,27 +2,57 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="style/global.css">
   </head>
   <body>
 
     <div class="container">
+
+      <div class="header row">
+        <div class="col-xs-8 logo">
+          <a href="/">Trader<span>ED</span></a>
+        </div>
+        <div class="col-xs-4 text-right">
+          <a href="bag.html" id="bag-icon"><img src='img/emptyBag.png'></a>
+        </div>
+      </div>
+
       <div class="col-md-8 my-centered">
         <div class="message"></div>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-info">
-            Here is your summary:
-          </li>
+          
         </ul>
       </div>
 
     </div>
 
-
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            <p>Product added succesfully</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="base_ajax.js" charset="utf-8"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <!-- <script type="text/javascript" src="header.js"></script> -->
     <script type="text/javascript" src="bag.js"></script>
   </body>
 </html>

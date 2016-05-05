@@ -17,6 +17,9 @@ var base_ajax = function(config) {
       withCredentials: true
     },
 
+    // Defining 2s for request to complete
+    timeout: 2000,
+
     // This is the type of data we are expecting to receive
     dataType: 'json',
 
@@ -28,7 +31,12 @@ var base_ajax = function(config) {
     success: config.success,
 
     // This is going to be our error handler
-    error: config.error
+    error: config.error,
+
+    // Making sure we don't leave opened connections
+    complete: function(e) {
+        e.abort();
+    }
   });
 };
 
