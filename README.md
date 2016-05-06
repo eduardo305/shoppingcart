@@ -69,14 +69,19 @@ grunt jasmine
 
 ### Known issues
 
-* The DELETE product flow is not working properly. The product is being excluded from the bag normally. However, the app can't fetch the bag items right next removing an item. The fetch shoppingcart request keeps pending for a long time, so I have added a timeout of 2s so it can be aborted.
-I have worked around this issue by tackling the DOM directly, which is not a good approach.
+* The DELETE product flow may not work properly. The product can be excluded from the bag normally, however the app may not fetch the bag items right next removing an item. The fetch shoppingcart request sometimes keeps pending for a long time, so I have added a timeout of 2s so it can be aborted.
+I have worked around this issue by tackling the DOM directly, which is not a good approach. Although it is not a good practice, I left the code commented out for verification in case it happens.
+The files are: app.js (line 72) and bag.js (lines 81 and 118).
 
 * The API doesn't bring back an absolute url for the product images. To workaround this issue, I hardcoded the product images so they can be displayed at the product pool page.
+
+* The POST and DELETE requests are being handled on the error handler, because this is a cross-domain request and they are not retrieving anything on the response body (just a status is being returned). When this scenario happens, the browser understands that an error has happened.
 
 
 ### Next steps
 
 * Implement the Jasmine tests properly
-* Fix the DELETE issue
+* Handle request erros properly. Display friendly error messages and/or redirect the user to an error page
+* Turn the app into a SPA
+* Fix the POST and DELETE issue (in case the API gets updated)
 * Implement one version using ReactJS

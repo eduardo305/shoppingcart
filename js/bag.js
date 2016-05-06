@@ -22,15 +22,17 @@
     // List of bag items placeholder
     var $baglist = $('.list-group');
 
+    var bagItem, itemprice, remove, total, emptyBagTemplate;
+
     // We always clean before re-render the bag list
     $baglist.html('');
 
     // If we don't have any item on our bag, we display an error message to the user
     if (data.items.length === 0) {
 
-      var emptyBagTemplate = '<div class=\'row\'><div class=\'col-md-8 text-center my-centered\'>' +
+      emptyBagTemplate = '<div class=\'row\'><div class=\'col-md-8 text-center my-centered\'>' +
         '<div class="error-state" role="alert"> '+
-        '<img src=\'img/emptyBag.png\'></div>' +
+        '<img src=\'/img/emptyBag.png\'></div>' +
         '<h4>Oops... Your bag is empty</h4>' +
         '<a href=\'/\' class=\'btn btn-info\'>keep shopping</a>' +
         '</div></div>'
@@ -41,16 +43,16 @@
 
       // Building the html bag item elements
       $.map(data.items, function(item, i) {
-        var bagitem = document.createElement('li');
+        bagitem = document.createElement('li');
         bagitem.className = 'list-group-item';
         bagitem.id = 'bagitem_' +  item.id;
         bagitem.innerHTML = '<div>' + item.product_name + '</div>';
 
-        var itemprice = document.createElement('span');
+        itemprice = document.createElement('span');
         itemprice.className = 'badge partial';
         itemprice.innerHTML = '$' + item.amount;
 
-        var remove = document.createElement('a');
+        remove = document.createElement('a');
         remove.className = 'remove-button';
         remove.id = item.id;
         remove.innerText ='remove';
@@ -61,29 +63,33 @@
       });
 
       // Appending the bag total
-      var total = '<li class=\'list-group-item active\'>' +
+      total = '<li class=\'list-group-item active\'>' +
         '<span class=\'badge\'>$' + data.amount +
         '</span><b>Your total: </b></li>'
 
       $baglist.append(total);
-
-      // If we removed an item, we need to also update our
-      // bag icon on the header
-      window.App.getBagCounter();
 
       // Assigning the remove event click for the remove button
       $('.remove-button').click(function() {
 
         $('#bagitem_' + this.id).fadeOut('slow', function(e) {
           this.remove();
-          window.App.getBagCounter();
-          updateTotal();
+
+          // This is a workaround for the DELETE method issue. It needs to be
+          // uncommented so it can be verified.
+          // More detais: https://github.com/eduardo305/shoppingcart/blob/master/README.md
+          //window.App.getBagCounter();
+          //updateTotal();
         });
 
         removeItem(this.id);
       });
 
     }
+
+    // If we removed an item, we need to also update our
+    // bag icon on the header
+    window.App.updateBagCounter(data.items);
   };
 
   // Method called when an item is removed from the bag
@@ -107,8 +113,9 @@
   };
 
   // Method used to update the bag total after removing an element
-  // TODO: solve issue with DELETE request so this method can be deprecated
-  var updateTotal = function() {
+  // For more details, refer to:
+  // https://github.com/eduardo305/shoppingcart/blob/master/README.md
+  /*var updateTotal = function() {
     var $bagItems = $('.partial'), total = 0;
 
     if ($bagItems) {
@@ -116,14 +123,14 @@
         var itemValue = item.innerHTML.replace('$', '');
 
         if (itemValue) {
-          total = total + parseFloat(itemValue);  
+          total = total + parseFloat(itemValue);
         }
       });
     }
 
     $('.list-group-item.active .badge').html('$' + total);
 
-  };
+  };*/
 
   // Triggering the product fetch request
   window.base_ajax(config);

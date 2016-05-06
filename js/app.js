@@ -4,17 +4,13 @@
   window.App = window.App ? window.App : {};
 
   // Global method used to update the bagCounter
-  window.App.getBagCounter = function() {
-    var $bagItems = $('.list-group-item');
+  window.App.updateBagCounter = function(items) {
     var $bagCounter = $('#bag-icon span');
 
-    if ($bagItems) {
-      if ($bagCounter.length > 0) {
-        $bagCounter.html('<span>' + ($bagItems.length - 1) + '</span>');
-      } else {
-        $('#bag-icon').append('<span>' + ($bagItems.length - 1) + '</span>');  
-      } 
-      
+    if ($bagCounter.length > 0) {
+      $bagCounter.html('<span>' + (items.length) + '</span>');
+    } else {
+      $('#bag-icon').append('<span>' + (items.length) + '</span>');
     }
   };
 
@@ -71,6 +67,24 @@
     'bf1efa4c-9b0f-40d2-b6ff-99082cb346ff': {
       url: 'img/acrobots.jpeg'
     }
-  }
+  };
+
+  // Global method used to update the bagCounter
+  // This is a workaround for the DELETE method issue. It needs to be
+  // uncommented so it can be verified.
+  // More detais: https://github.com/eduardo305/shoppingcart/blob/master/README.md
+  /*window.App.getBagCounter = function() {
+    var $bagItems = $('.list-group-item');
+    var $bagCounter = $('#bag-icon span');
+
+    if ($bagItems) {
+      if ($bagCounter.length > 0) {
+        $bagCounter.html('<span>' + ($bagItems.length - 1) + '</span>');
+      } else {
+        $('#bag-icon').append('<span>' + ($bagItems.length - 1) + '</span>');
+      }
+
+    }
+  };*/
 
 })();
